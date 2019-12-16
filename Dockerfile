@@ -4,15 +4,18 @@ RUN apt-get update -y && \
     apt-get install -y python3.4 && \
     apt-get install -y python3-pip
 
-# We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /requirements.txt
 
-WORKDIR /app
+WORKDIR /
 
 RUN pip3 install -r requirements.txt
 
-COPY . /app
+COPY . /
 
-ENTRYPOINT [ "python3" ]
+ENV FLASK_APP=app.py
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
-CMD [ "app.py" ]
+ENTRYPOINT export FLASK_APP=app.py && python3 -m flask run --host=0.0.0.0
+
+#CMD flask run
