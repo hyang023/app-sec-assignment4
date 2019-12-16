@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-in-k8s
+spec:
+  selector:
+    matchLabels:
+      app: webapp-in-k8s
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: webapp-in-k8s
+    spec:
+      containers:
+      - name: webapp-in-k8s
+        image: webapp:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "1"
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
