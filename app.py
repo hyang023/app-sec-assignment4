@@ -183,11 +183,11 @@ def history():
             for eachquery in checkquery:
                 message2.append(str(eachquery.query_id))
             message1 = "you have made "+str(len(checkquery))+" queries"
-        elif loggedin:
-            checkquery = Query.query.filter_by(queryusr=loggedin).all()
-            for eachquery in checkquery:
-                message2.append(str(eachquery.query_id))
-            message1 = "you have made "+str(len(checkquery))+" queries"
+    elif loggedin:
+        checkquery = Query.query.filter_by(queryusr=loggedin).all()
+        for eachquery in checkquery:
+            message2.append(str(eachquery.query_id))
+        message1 = "you have made "+str(len(checkquery))+" queries"
     return render_template('history.html', message1=message1, message2=message2, user=loggedin, value=value)
 
 @app.route('/history/query<int:query_id>')
