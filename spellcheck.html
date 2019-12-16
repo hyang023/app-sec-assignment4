@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <h1> Spell Check Tool</h1>
+  </head>  
+<body>
+
+<form action="" method="post">
+    <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
+    Text Submission <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
+    <input type="submit" name="submit">
+</form>
+
+  {% if message %}
+    <p id=textout>{{ message }}</p>
+  {% endif %}
+
+  {% if message2 %}
+    <p id=misspelled>{{ message2 }}</p>
+  {% endif %}  
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <h1> Record History</h1>
+  </head>  
+<body>
+  {% if user == "admin" %}
+     <form action="" method="post">
+       <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
+       Enter User <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
+       <input type="submit" name="submit">
+     </form>
+  {% else %}
+  <p> unauthorized </p>
+  {% endif %}
+  
+  {% if message1 %}
+  <p id=numqueries>{{ message1 }}</p>
+     {% for query in message2 %}
+  <p id="query{{ query }}"><a href={{ url_for('query_history', query_id=query) }}> query#{{ query }} </a></p>
+     {% endfor %}
+  {% endif %}
+</body>
+</html>
+© 2019 GitHub, Inc.

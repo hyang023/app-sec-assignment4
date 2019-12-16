@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <h1> Login History</h1>
+  </head>  
+<body>
+  <p id=result>Admins can view login history page here</p>
+  {% if user == "admin" %}
+  <form action="" method="post">
+    <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
+    Enter User <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
+    <input type="submit" name="submit">
+  </form>
+  {% endif %}
+  
+  {% for loginnum,logitime,logotime in message1 %}
+  <dl>
+    <dt id="login{{ loginnum }}">Login# {{ loginnum }}</dt>
+    <dd id="login{{ loginnum}}_time"> Login time: {{ logitime }}</dd>
+    <dd id="logout{{ loginnum}}_time"> Logout time: {{ logotime }}</dd>
+  </dl>
+  {% endfor %}
+</body>
+</html>
+© 2019 GitHub, Inc.
